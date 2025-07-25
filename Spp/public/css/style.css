@@ -1,0 +1,217 @@
+/* Importar una fuente moderna (opcional) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+/* Variables de color para fácil modificación */
+:root {
+    --feid-green: #00ff00; /* Verde neón brillante */
+    --feid-dark-bg: #111111; /* Fondo muy oscuro, casi negro */
+    --feid-container-bg-rgba: rgba(30, 30, 30, 0.95); /* Fondo del contenedor principal, casi opaco */
+    --feid-light-text: #e0e0e0; /* Texto claro */
+    --feid-input-bg: #2a2a2a; /* Fondo de inputs oscuro */
+    --feid-border: #444444; /* Borde de inputs */
+    --feid-error-red: #ff3333; /* Rojo vibrante para errores */
+}
+
+/* Estilos generales para el cuerpo */
+#login-body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--feid-dark-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--feid-light-text);
+
+    /* --- Fondo con los símbolos de Ferxxo (NÍTIDO) --- */
+    background-image:
+        url('../images/ferxxo_symbols/gafas_feid.png'),
+        url('../images/ferxxo_symbols/corazon_feid.png'),
+        url('../images/ferxxo_symbols/ferxxo_logo.png');
+    
+    background-position:
+        top 5% left 5%,
+        bottom 10% right 10%,
+        center center;
+
+    background-size:
+        120px,
+        100px,
+        200px;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: none; /* Asegura que el body no tenga ningún filtro */
+}
+
+/* Contenedor principal del formulario */
+#login-container {
+    background-color: var(--feid-container-bg-rgba); /* Fondo semitransparente, puedes ajustarlo a un color sólido si prefieres no ver el fondo detrás */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    border: 2px solid var(--feid-green);
+    position: relative;
+    z-index: 10;
+    animation: fadeIn 1s ease-out;
+
+    /* --- ¡IMPORTANTE! ELIMINAMOS EL BACKDROP-FILTER AQUÍ --- */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* Si habías añadido .login-content-wrapper, asegúrate de que no tenga 'filter: blur()' */
+/* Si no lo necesitas, puedes quitar completamente el div .login-content-wrapper de tu HTML */
+.login-content-wrapper {
+    /* Asegúrate de que no haya 'filter: blur()' aquí si mantienes este div */
+    /* background-color: transparent; o un color sólido si es necesario */
+    /* padding: 0; o el padding que necesites */
+    /* filter: none; */
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Título del formulario */
+.login-title {
+    text-align: center;
+    color: var(--feid-green);
+    margin-bottom: 40px;
+    font-size: 2.8em;
+    text-shadow: 0 0 15px var(--feid-green), 0 0 25px rgba(0,255,0,0.3);
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Resto del CSS del formulario (sin cambios importantes) */
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: var(--feid-light-text);
+    font-size: 1.15em;
+    letter-spacing: 0.5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--feid-border);
+    border-radius: 8px;
+    font-size: 1.1em;
+    box-sizing: border-box;
+    background-color: var(--feid-input-bg);
+    color: var(--feid-light-text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+.form-control:focus {
+    border-color: var(--feid-green);
+    outline: none;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
+    background-color: #383838;
+}
+
+.is-invalid {
+    border-color: var(--feid-error-red);
+}
+
+.invalid-feedback {
+    color: var(--feid-error-red);
+    font-size: 0.95em;
+    margin-top: 8px;
+    display: block;
+    font-weight: 600;
+}
+
+.form-check {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--feid-green);
+    border: 2px solid var(--feid-green);
+    background-color: var(--feid-input-bg);
+    cursor: pointer;
+}
+
+.form-check-label {
+    color: var(--feid-light-text);
+    font-size: 1.05em;
+    cursor: pointer;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 18px 25px;
+    font-size: 1.3em;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: var(--feid-green);
+    color: var(--feid-dark-bg);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #00cc00;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 1.05em;
+    color: #bbb;
+}
+
+.register-link a {
+    color: var(--feid-green);
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-shadow 0.3s ease;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 10px var(--feid-green);
+}
