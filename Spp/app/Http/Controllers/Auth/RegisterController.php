@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard'; // O a donde quieras redirigir después del registro
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -37,9 +37,6 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // ¡Aquí es donde se aplica el middleware!
-        // Asegúrate de que esta línea esté DENTRO del método __construct()
-        // y NO directamente debajo de 'use RegistersUsers;' o la definición de la clase.
         $this->middleware('guest');
     }
 

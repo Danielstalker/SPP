@@ -1,0 +1,281 @@
+/* public/css/dashboard.css - Estilo Ferxxo Minimalista con Bordes Resaltados */
+
+/* Importar una fuente moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+/* Variables personalizadas para tu paleta Ferxxo */
+:root {
+    /* Colores primarios de Filament, definidos en tu PanelProvider */
+    /* Filament genera una escala de 50 a 950 para 'primary' (tu verde neón) */
+
+    /* Colores base para el modo oscuro de Filament (predeterminado) */
+    --gray-50-dark: #121212;   /* Fondo general muy oscuro */
+    --gray-100-dark: #1f1f1f;  /* Fondo para cards/widgets */
+    --gray-200-dark: #2c2c2c;  /* Fondo para inputs */
+    --gray-700-dark: #bbbbbb;  /* Texto general más claro */
+    --gray-900-dark: #eeeeee;  /* Texto principal */
+
+    /* Tus colores Ferxxo para elementos específicos */
+    --feid-green-base: rgb(0, 255, 0); /* Tu verde neón puro */
+    --feid-border-color: rgb(50, 255, 50); /* Verde ligeramente más claro para el borde */
+    --feid-shadow-color: rgba(50, 255, 50, 0.8); /* Sombra más brillante para el neón */
+    --feid-shadow-spread: rgba(50, 255, 50, 0.4); /* Expansión de la sombra más clara */
+
+
+    /* Aplica la fuente globalmente a Filament */
+    --font-family-sans: 'Poppins', sans-serif;
+}
+
+/* Base global de Filament */
+.fi-app {
+    font-family: var(--font-family-sans);
+}
+
+/* Estilos para el Modo Oscuro (cuando data-theme="dark") */
+.fi-app[data-theme="dark"] {
+    /* Aplica tus grises oscuros personalizados */
+    --gray-50: var(--gray-50-dark);
+    --gray-100: var(--gray-100-dark);
+    --gray-200: var(--gray-200-dark);
+    --gray-700: var(--gray-700-dark);
+    --gray-900: var(--gray-900-dark);
+
+    /* Fondo principal del panel en modo oscuro */
+    background-color: var(--gray-50);
+    color: var(--gray-900); /* Texto principal claro */
+}
+
+/* Estilos para el Modo Claro (cuando data-theme="light") */
+.fi-app[data-theme="light"] {
+    /* Asegúrate de que los colores sean legibles sobre un fondo claro */
+
+    .fi-sidebar {
+        background-color: var(--gray-50) !important; /* Fondo claro para sidebar en modo claro */
+    }
+    .fi-sidebar-item-label, .fi-sidebar-item-icon {
+        color: var(--gray-800) !important; /* Texto oscuro para items no activos en modo claro */
+    }
+    /* El botón activo del sidebar en modo claro también será verde neón con texto negro */
+    .fi-sidebar-item.fi-active {
+        background-color: var(--primary-500) !important;
+        color: black !important;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    }
+    /* Resto de elementos en modo claro con bordes neón */
+    .fi-widget, .fi-section, .fi-modal-content, .fi-fieldset, .fi-card,
+    .fi-input, .fi-select, .fi-textarea {
+        border-color: var(--feid-border-color) !important; /* Bordes neón también en modo claro */
+        box-shadow: 0 0 10px rgba(50, 255, 50, 0.2); /* Sombra neón más sutil */
+    }
+}
+
+
+/* Sidebar (Menú Lateral) */
+/* Se mantiene el fondo oscuro predeterminado de Filament, sin brillo neón completo */
+.fi-sidebar {
+    background-color: var(--gray-50-dark) !important;
+    border-right: 1px solid var(--gray-200-dark); /* Borde sutil del mismo color */
+    border-radius: 12px; /* Border-radius para la sidebar */
+    box-shadow: none; /* Elimina la sombra para la barra lateral completa */
+}
+
+/* Color del texto y el icono en los elementos NO activos del sidebar */
+.fi-sidebar-item-label,
+.fi-sidebar-item-icon {
+    color: var(--gray-700-dark) !important; /* Texto gris claro para contraste */
+    font-weight: 600;
+}
+
+/* Elemento activo/seleccionado del sidebar (fondo verde neón, texto oscuro) */
+/* ESTO AFECTA DIRECTAMENTE AL BOTÓN "ESCRITORIO" CUANDO ESTÁ ACTIVO */
+.fi-sidebar-item.fi-active {
+    background-color: var(--primary-500) !important; /* ¡FONDO VERDE NEÓN PARA EL BOTÓN ACTIVO! */
+    border: 1px solid var(--feid-border-color) !important; /* Borde más claro y resaltado */
+    color: black !important; /* ¡¡¡LETRA NEGRA PARA EL BOTÓN ACTIVO!!! */
+    border-radius: 8px; /* Border-radius para el botón activo */
+    box-shadow:
+        0 0 8px var(--feid-shadow-color), /* Sombra principal */
+        0 0 16px var(--feid-shadow-spread); /* Sombra más extendida y clara */
+    padding-left: 12px; /* Ajusta el padding si el borde lateral lo cambia */
+}
+
+/* Hover para elementos NO activos del sidebar (un toque sutil) */
+.fi-sidebar-item:hover:not(.fi-active) {
+    background-color: var(--gray-100-dark) !important; /* Fondo ligeramente más claro al pasar el ratón */
+    color: var(--gray-900-dark) !important; /* Texto un poco más blanco al pasar el ratón */
+    border-radius: 8px; /* Border-radius al hacer hover */
+}
+
+
+/* Encabezado del panel (arriba) */
+.fi-header {
+    background-color: var(--gray-50-dark); /* Fondo oscuro */
+    border-bottom: 1px solid var(--feid-border-color); /* Borde inferior verde neón más claro */
+    box-shadow: 0 0 18px rgba(50, 255, 50, 0.4); /* Sombra neón más sutil para el header */
+    border-radius: 12px; /* Border-radius para el header */
+    padding-top: 25px !important;    /* <-- AUMENTA EL TAMAÑO VERTICAL DEL CUADRO */
+    padding-bottom: 25px !important; /* <-- AUMENTA EL TAMAÑO VERTICAL DEL CUADRO */
+    display: flex;                   /* <-- HABILITA FLEXBOX PARA CENTRAR */
+    justify-content: center;         /* <-- CENTRA EL CONTENIDO HORIZONTALMENTE */
+    align-items: center;       
+    text-align: center;      /* <-- CENTRA EL CONTENIDO VERTICALMENTE */
+}
+.fi-header-heading {
+    color: var(--feid-border-color) !important; /* Título verde neón más claro */
+    text-shadow: 0 0 10px var(--feid-border-color); /* Pequeña sombra de texto */
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0 !important; /* Elimina márgenes por defecto que podrían afectar el centrado */
+}
+
+
+/* BOTONES PRIMARIOS (e.g., "Documentación", "GitHub") */
+.fi-btn.fi-btn-primary {
+    background-color: var(--primary-500) !important; /* Fondo verde neón */
+    color: black !important; /* Texto negro para contraste */
+    border: 1px solid var(--feid-border-color) !important; /* Borde más claro y resaltado */
+    border-radius: 8px; /* ¡Border-radius bonito! */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px; /* Padding adecuado */
+    transition: all 0.2s ease-in-out;
+    box-shadow:
+        0 0 10px var(--feid-shadow-color), /* Sombra principal */
+        0 0 20px var(--feid-shadow-spread); /* Sombra más extendida y clara */
+}
+
+.fi-btn.fi-btn-primary:hover {
+    box-shadow:
+        0 0 15px var(--feid-shadow-color),
+        0 0 30px var(--feid-shadow-spread);
+    transform: translateY(-1px); /* Efecto ligero de "pop" */
+    cursor: pointer;
+}
+
+/* BOTONES SECUNDARIOS/OUTLINE (e.g., "Salir") */
+.fi-btn.fi-btn-secondary,
+.fi-btn.fi-btn-outline {
+    background-color: transparent !important;
+    color: var(--feid-border-color) !important; /* Texto verde neón más claro */
+    border: 1px solid var(--feid-border-color) !important; /* Borde verde neón más claro */
+    border-radius: 8px; /* ¡Border-radius bonito! */
+    box-shadow: 0 0 10px var(--feid-shadow-color); /* Sombra neón más clara */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease-in-out;
+    padding: 10px 20px; /* Padding adecuado */
+}
+.fi-btn.fi-btn-secondary:hover,
+.fi-btn.fi-btn-outline:hover {
+    background-color: rgba(0, 255, 0, 0.1) !important; /* Fondo sutil al pasar el ratón */
+    box-shadow: 0 0 15px var(--feid-shadow-color);
+    transform: translateY(-1px);
+}
+
+/* Botones dentro de modales (como el de "Salir" si está en un modal) */
+.fi-modal-actions .fi-btn {
+    background-color: transparent !important;
+    color: var(--feid-border-color) !important;
+    border: 1px solid var(--feid-border-color) !important;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--feid-shadow-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease-in-out;
+}
+.fi-modal-actions .fi-btn:hover {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+    box-shadow: 0 0 15px var(--feid-shadow-color);
+    transform: translateY(-1px);
+}
+
+
+/* Widgets / Tarjetas / Secciones */
+.fi-widget,
+.fi-section,
+.fi-modal-content,
+.fi-fieldset,
+.fi-card {
+    background-color: var(--gray-100-dark) !important; /* Fondo ligeramente más claro que el base */
+    border: 1px solid var(--feid-border-color) !important; /* ¡Borde verde neón más claro! */
+    border-radius: 12px; /* ¡Border-radius bonito! */
+    box-shadow:
+        0 0 12px var(--feid-shadow-color), /* Sombra principal */
+        0 0 24px var(--feid-shadow-spread); /* Sombra más extendida y clara */
+    color: var(--gray-900-dark); /* Texto claro en las cajas */
+    padding: 1.5rem; /* Padding generoso */
+}
+.fi-widget-header-title, .fi-section-header-heading, .fi-modal-content .fi-modal-header-heading {
+    color: var(--feid-border-color) !important; /* Títulos verde neón más claro */
+    text-shadow: 0 0 8px var(--feid-border-color); /* Pequeña sombra de texto */
+}
+
+
+/* Inputs, Selects, Textareas */
+.fi-input, .fi-select, .fi-textarea {
+    background-color: var(--gray-200-dark) !important; /* Fondo para inputs */
+    color: var(--gray-900-dark) !important; /* Texto claro en inputs */
+    border: 1px solid var(--feid-border-color) !important; /* ¡Borde verde neón más claro! */
+    border-radius: 8px; /* ¡Border-radius bonito! */
+    box-shadow: 0 0 10px rgba(50, 255, 50, 0.4) inset; /* Sombra neón INSET más clara */
+    padding: 10px 15px;
+    transition: all 0.2s ease-in-out;
+}
+.fi-input:focus, .fi-select:focus, .fi-textarea:focus {
+    border-color: var(--feid-border-color) !important; /* Mantiene el color más claro al enfocar */
+    box-shadow:
+        0 0 15px var(--feid-shadow-color) inset, /* Sombra más intensa al enfocar */
+        0 0 25px var(--feid-shadow-spread) inset;
+    outline: none;
+}
+/* Placeholders */
+.fi-input::placeholder, .fi-textarea::placeholder {
+    color: var(--gray-500) !important;
+}
+
+
+/* Links */
+.fi-link {
+    color: var(--feid-border-color) !important; /* Links verde neón más claro */
+    text-decoration: none;
+    transition: text-shadow 0.3s ease;
+}
+.fi-link:hover {
+    text-shadow: 0 0 12px var(--feid-border-color);
+    text-decoration: underline;
+}
+
+/* Etiquetas (badges) */
+.fi-badge {
+    background-color: var(--primary-100) !important; /* Este usa la escala de primary */
+    color: var(--primary-700) !important;
+    border: 1px solid var(--feid-border-color) !important; /* Borde de badge más claro */
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+/* Iconos */
+.fi-icon {
+    color: var(--feid-border-color); /* Iconos verde neón más claro */
+}
+
+/* Scrollbar personalizado (para navegadores WebKit) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--gray-100-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--feid-border-color); /* Scrollbar thumb verde neón más claro */
+    border-radius: 5px;
+    box-shadow: 0 0 8px var(--feid-shadow-color);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-600); /* Podrías usar un tono ligeramente diferente al hover si quieres */
+    box-shadow: 0 0 12px var(--feid-shadow-color);
+}

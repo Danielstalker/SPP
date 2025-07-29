@@ -3,22 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Auth; // ¡IMPORTANTE: Añade esta línea!
+use Illuminate\Support\Facades\Auth;
 
+// La ruta raíz ahora apunta a la vista 'layouts.pagina-inicio'
 Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+    return view('layouts.pagina-inicio');
+})->name('welcome');
 
-// Rutas de Login y Logout que ya tienes
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// ¡AÑADE ESTA LÍNEA PARA LAS RUTAS DE REGISTRO Y OTRAS DE AUTENTICACIÓN!
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Esta ruta redirige /home a la ruta raíz si un usuario se loguea
+Route::get('/home', function () {
+    return redirect()->route('welcome');
 });

@@ -1,0 +1,32 @@
+/* resources/css/dashboard-theme.css */
+
+body {
+  background-color: #000 !important;
+  color: #00ff00 !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.filament-button {
+  background-color: #00ff00 !important;
+  color: #000 !important;
+  font-weight: bold;
+  box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+
+.filament-widget,
+.bg-white,
+.bg-gray-50 {
+  background-color: #111 !important;
+  border: 2px solid #00ff00 !important;
+  box-shadow: 0 0 15px #00ff00;
+  color: #00ff00 !important;
+}
+
+input,
+select,
+textarea {
+  background-color: #111 !important;
+  color: #00ff00 !important;
+  border: 1px solid #00ff00 !important;
+  box-shadow: 0 0 10px #00ff00 inset;
+}

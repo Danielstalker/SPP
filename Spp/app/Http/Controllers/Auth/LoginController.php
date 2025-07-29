@@ -3,62 +3,38 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /**
-     * Muestra el formulario de login.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function showLoginForm()
-    {
-        return view('auth.login'); // Asume que tienes una vista en resources/views/auth/login.blade.php
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
 
     /**
-     * Maneja el intento de login.
+     * Where to redirect users after login.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @var string
      */
-    public function login(Request $request)
-    {
-        // 1. Validar las credenciales
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        // 2. Intentar autenticar al usuario
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/dashboard'); // Redirige a la URL deseada o a /dashboard
-        }
-
-        // 3. Si las credenciales son incorrectas, redirigir de vuelta con un error
-        return back()->withErrors([
-            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-        ])->onlyInput('email');
-    }
+    protected $redirectTo = '/home';
 
     /**
-     * Cierra la sesión del usuario.
+     * Create a new controller instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return void
      */
-    public function logout(Request $request)
+    public function __construct()
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
     }
 }

@@ -15,62 +15,41 @@
 /* Estilos generales para el cuerpo */
 #login-body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--feid-dark-bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* Asegura que el body sea un contenedor flex */
+    flex-direction: column; /* Apila los elementos (navbar, main-content) verticalmente */
+    justify-content: flex-start; /* Alinea los elementos al inicio del eje vertical (navbar arriba) */
+    align-items: center; /* Centra los elementos horizontalmente en el body */
     min-height: 100vh;
     margin: 0;
     box-sizing: border-box;
     color: var(--feid-light-text);
-
-    /* --- Fondo con los símbolos de Ferxxo (NÍTIDO) --- */
-    background-image:
-        url('../images/ferxxo_symbols/gafas_feid.png'),
-        url('../images/ferxxo_symbols/corazon_feid.png'),
-        url('../images/ferxxo_symbols/ferxxo_logo.png');
-    
-    background-position:
-        top 5% left 5%,
-        bottom 10% right 10%,
-        center center;
-
-    background-size:
-        120px,
-        100px,
-        200px;
-
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    filter: none; /* Asegura que el body no tenga ningún filtro */
+    background-color: black;
+    background-image: none;
+    filter: none;
 }
 
-/* Contenedor principal del formulario */
+
+/* Contenedor principal del formulario / bienvenida */
+/* Contenedor principal del formulario / bienvenida */
 #login-container {
-    background-color: var(--feid-container-bg-rgba); /* Fondo semitransparente, puedes ajustarlo a un color sólido si prefieres no ver el fondo detrás */
+    background-color: var(--feid-container-bg-rgba);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
     width: 100%;
-    max-width: 480px;
+    max-width: 700px; /* O el ancho que desees */
     box-sizing: border-box;
     border: 2px solid var(--feid-green);
     position: relative;
     z-index: 10;
     animation: fadeIn 1s ease-out;
 
-    /* --- ¡IMPORTANTE! ELIMINAMOS EL BACKDROP-FILTER AQUÍ --- */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-
-/* Si habías añadido .login-content-wrapper, asegúrate de que no tenga 'filter: blur()' */
-/* Si no lo necesitas, puedes quitar completamente el div .login-content-wrapper de tu HTML */
-.login-content-wrapper {
-    /* Asegúrate de que no haya 'filter: blur()' aquí si mantienes este div */
-    /* background-color: transparent; o un color sólido si es necesario */
-    /* padding: 0; o el padding que necesites */
-    /* filter: none; */
+    /* Estos márgenes son importantes para que se centre automáticamente cuando el padre lo permite */
+    margin-left: auto;
+    margin-right: auto;
+    /* Ajusta el margin-top y margin-bottom para el espaciado vertical */
+    margin-top: 50px; /* Puedes ajustar este valor según la altura de tu navbar */
+    margin-bottom: 50px;
 }
 
 
@@ -91,8 +70,7 @@
     text-transform: uppercase;
 }
 
-/* Resto del CSS del formulario (sin cambios importantes) */
-
+/* Estilos para grupos de formulario (label + input) */
 .form-group {
     margin-bottom: 25px;
 }
@@ -106,6 +84,7 @@
     letter-spacing: 0.5px;
 }
 
+/* Estilos para inputs de formulario */
 .form-control {
     width: 100%;
     padding: 14px 18px;
@@ -129,6 +108,7 @@
     background-color: #383838;
 }
 
+/* Estilos para inputs inválidos (validación) */
 .is-invalid {
     border-color: var(--feid-error-red);
 }
@@ -141,6 +121,7 @@
     font-weight: 600;
 }
 
+/* Estilos para checkbox "Recordarme" */
 .form-check {
     margin-bottom: 30px;
     display: flex;
@@ -163,6 +144,7 @@
     cursor: pointer;
 }
 
+/* Estilos para acciones del formulario (botón) */
 .form-actions {
     text-align: center;
     margin-top: 35px;
@@ -197,6 +179,7 @@
     transform: translateY(-2px);
 }
 
+/* Estilos para el enlace de registro/login */
 .register-link {
     text-align: center;
     margin-top: 35px;
@@ -215,3 +198,235 @@
     text-decoration: underline;
     text-shadow: 0 0 10px var(--feid-green);
 }
+
+/* Estilos para alertas (errores generales) */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-danger ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* *** NUEVOS ESTILOS ESPECÍFICOS PARA LA NAVBAR Y CONTENIDO PRINCIPAL (home_layout.blade.php) *** */
+.navbar {
+    background-color: rgba(17, 17, 17, 0.9);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    border-bottom: 1px solid var(--feid-green);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.navbar-logo {
+    height: 50px;
+    filter: drop-shadow(0 0 8px var(--feid-green));
+}
+
+.navbar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: var(--feid-light-text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-link:hover {
+    color: var(--feid-green);
+    text-shadow: 0 0 10px var(--feid-green);
+}
+
+.navbar-auth {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-auth .btn {
+    margin-left: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: none;
+}
+
+.whatsapp-icon {
+    height: 40px;
+    margin-left: 20px;
+    filter: drop-shadow(0 0 8px var(--feid-green));
+}
+
+.main-content {
+    padding-top: 100px; /* Ajusta esto según la altura de tu navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Cambiado de center para que los elementos empiecen arriba y no en el medio de lo que sobra */
+    align-items: center; /* Esto es clave para centrar horizontalmente los hijos */
+    min-height: calc(100vh - 100px); /* Ocupa el resto de la pantalla - altura del padding */
+    box-sizing: border-box;
+    width: 100%; /* Asegura que el main-content ocupe todo el ancho disponible */
+}
+
+/* Estilos para el contenido de bienvenida dentro del .main-content */
+.welcome-content {
+    text-align: center;
+    color: var(--feid-green);
+    font-size: 2.5em;
+    font-weight: 800;
+    text-shadow: 0 0 20px var(--feid-green), 0 0 30px rgba(0,255,0,0.5);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    animation: pulse 2s infinite alternate;
+}
+
+.welcome-subtitle {
+    font-size: 1.2em;
+    color: var(--feid-light-text);
+    margin-top: 20px;
+    text-align: center;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.05); opacity: 0.8; }
+}
+/* --- NUEVOS ESTILOS PARA LA SECCIÓN DE PRODUCTOS --- */
+#welcome-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos hijos horizontalmente */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px; /* Asegura que la sección completa no exceda un ancho razonable */
+}
+
+/* Ajusta el margen superior del login-container para que no choque con la navbar en esta vista */
+#welcome-section #login-container {
+    margin-top: 20px; /* Ya no es 'auto', es un valor fijo para el espaciado */
+    margin-bottom: 50px; /* Espacio después del mensaje de bienvenida */
+}
+
+.products-section {
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para el grid de productos */
+    margin-top: 50px; /* Espacio superior para separar de la sección de bienvenida */
+    padding: 30px;
+    background-color: rgba(17, 17, 17, 0.9); /* Fondo oscuro semitransparente */
+    border-radius: 15px;
+    box-shadow: 0 0 35px rgba(0, 255, 0, 0.5);
+    border: 2px solid var(--feid-green);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.section-title {
+    color: var(--feid-green);
+    font-size: 2.8em;
+    text-shadow: 0 0 15px var(--feid-green), 0 0 25px rgba(0,255,0,0.3);
+    font-weight: 800;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 40px; /* Espacio entre las cartas */
+    justify-content: center;
+    align-items: start;
+}
+
+.product-card {
+    background-color: rgba(40, 40, 40, 0.95); /* Fondo un poco más claro para la carta */
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Recorta la imagen para que quepa */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(0,255,0,0.4)); /* Efecto neón en la imagen */
+}
+
+.product-name {
+    color: var(--feid-green);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px var(--feid-green);
+    font-weight: 700;
+}
+
+.product-price {
+    color: var(--feid-light-text);
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.buy-button {
+    background-color: var(--feid-green);
+    color: var(--feid-dark-bg);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.buy-button:hover {
+    background-color: #00cc00;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+    transform: translateY(-3px);
+}   

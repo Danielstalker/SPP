@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"> {{-- ¡Crucial para cargar tu CSS! --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body id="login-body"> {{-- Reutilizamos el ID del body para el fondo 4K --}}
-    <div id="login-container"> {{-- Reutilizamos el ID del contenedor principal para el estilo del cuadro --}}
-        <h2 class="login-title">Registrarse</h2> {{-- Título del formulario con estilo neón --}}
+<body id="login-body" style="background-image: url('{{ asset('images/maxresdefault.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+    <div id="login-container">
+        <h2 class="login-title">Registrarse</h2>
 
-        {{-- Mensaje de error general (si hay errores de validación, por ejemplo, campos vacíos) --}}
+        {{-- Mensaje de error general (si hay errores de validación) --}}
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -21,8 +21,8 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('register') }}" class="register-form"> {{-- Ruta y método para el envío del formulario --}}
-            @csrf {{-- ¡Token CSRF, es obligatorio en Laravel para seguridad! --}}
+        <form method="POST" action="{{ route('register') }}" class="register-form">
+            @csrf
 
             {{-- Campo Nombre --}}
             <div class="form-group">
@@ -64,7 +64,7 @@
             <div class="form-group">
                 <label for="password-confirm">Confirmar Contraseña</label>
                 <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password"
-                       class="form-control"> {{-- No necesita is-invalid aquí directamente, Laravel maneja la confirmación por la regla 'confirmed' --}}
+                       class="form-control">
             </div>
 
             <div class="form-actions">
@@ -74,7 +74,7 @@
             </div>
         </form>
 
-        <div class="register-link"> {{-- Este div es para el enlace de "Ya tienes cuenta?" --}}
+        <div class="register-link">
             ¿Ya tienes cuenta?
             <a href="/login">Iniciar Sesión aquí</a>
         </div>
